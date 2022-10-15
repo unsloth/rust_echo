@@ -6,13 +6,13 @@ struct Cli {
     #[arg(help = "Input text", required = true)]
     text: Vec<String>,
 
-    #[arg(short, long = None, help = "Do not print newline")]
-    new: bool,
+    #[arg(short = 'n', long = None, help = "Do not print newline")]
+    omit_newline: bool,
 }
 
 fn main() {
     let cli = Cli::parse();
 
-    let newline = if cli.new { "" } else { "\n" };
-    print!("{}{}", cli.text.join(" "), newline);
+    let end = if cli.omit_newline { "" } else { "\n" };
+    print!("{}{}", cli.text.join(" "), end);
 }
